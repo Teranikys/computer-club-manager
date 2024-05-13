@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-func (cc *ComputerClub) parseTime(input string) (time.Time, error) {
+func parseTime(input string) (time.Time, error) {
 	t, err := time.Parse(`15:04`, input)
 	if err != nil {
 		return time.Time{}, err
@@ -42,12 +42,12 @@ func (cc *ComputerClub) parseEvents(scanner *bufio.Scanner) error {
 		fmt.Println(scanner.Text())
 		return fmt.Errorf("invalid opening hours format")
 	}
-	cc.openTime, err = cc.parseTime(times[0])
+	cc.openTime, err = parseTime(times[0])
 	if err != nil {
 		fmt.Println(scanner.Text())
 		return err
 	}
-	cc.closeTime, err = cc.parseTime(times[1])
+	cc.closeTime, err = parseTime(times[1])
 	if err != nil {
 		fmt.Println(scanner.Text())
 		return err
@@ -73,7 +73,7 @@ func (cc *ComputerClub) parseEvents(scanner *bufio.Scanner) error {
 			return fmt.Errorf("invalid event format in line: %s", line)
 		}
 
-		eventTime, err := cc.parseTime(parts[0])
+		eventTime, err := parseTime(parts[0])
 		if err != nil {
 			fmt.Println(scanner.Text())
 			return fmt.Errorf("invalid time format in line: %s", line)
