@@ -1,6 +1,6 @@
 package club
 
-var (
+const (
 	ErrNotOpenYet       = "NotOpenYet"
 	ErrClientUnknown    = "ClientUnknown"
 	ErrPlaceIsBusy      = "PlaceIsBusy"
